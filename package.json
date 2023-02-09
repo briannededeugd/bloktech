@@ -1,0 +1,20 @@
+{
+  "name": "matching-application",
+  "version": "1.0.0",
+  "description": "Dit is mijn repository voor blok tech (Frontend Development 2, Backend Development en Project Tech).",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/briannededeugd/matching-application.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/briannededeugd/matching-application/issues"
+  },
+  "homepage": "https://github.com/briannededeugd/matching-application#readme"
+}
