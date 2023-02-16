@@ -4,17 +4,41 @@
   "description": "Dit is mijn repository voor blok tech (Frontend Development 2, Backend Development en Project Tech).",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "serve": "nodemon index.js",
+    "build": "babel src -d build"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/briannededeugd/matching-application.git"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "music",
+    "songs",
+    "artists",
+    "instruments",
+    "instrumentals",
+    "discovermusic",
+    "discovernewmusic",
+    "song",
+    "musicartist",
+    "musicartists"
+  ],
+  "author": {
+    "name": "Brianne de Deugd",
+    "email": "brianne.de.deugd@hva.nl",
+    "url": "https://brianne.nl/portfolio"
+  },
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/briannededeugd/matching-application/issues"
   },
-  "homepage": "https://github.com/briannededeugd/matching-application#readme"
+  "homepage": "https://github.com/briannededeugd/matching-application#readme",
+  "dependencies": {
+    "@babel/cli": "^7.20.7",
+    "camelcase": "^7.0.1",
+    "express": "^4.18.2",
+    "nodemon": "^2.0.20"
+  }
 }

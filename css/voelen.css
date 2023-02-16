@@ -1,0 +1,42 @@
+body {
+    position: absolute;
+}
+
+
+/***** SECTIE MET TEXT ******/
+
+body > section:first-of-type {
+    margin-bottom: 1.25em;
+}
+
+body > section:first-of-type > h1 {
+    margin-bottom: 0;
+}
+
+body > section:first-of-type > p {
+    margin: 0 auto;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

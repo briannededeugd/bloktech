@@ -1,0 +1,9 @@
+body > form label {
+    line-height: 20;
+    height: 11.5em;
+    width: 11.75em;
+}
+
+footer > a:first-of-type img {
+    transform: rotate(180deg);
+}
