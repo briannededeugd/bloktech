@@ -40,5 +40,8 @@
     "camelcase": "^7.0.1",
     "express": "^4.18.2",
     "nodemon": "^2.0.20"
+  },
+  "devDependencies": {
+    "nodemod": "^3.0.6"
   }
 }
