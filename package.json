@@ -39,6 +39,7 @@
     "@babel/cli": "^7.20.7",
     "camelcase": "^7.0.1",
     "express": "^4.18.2",
+    "mime": "^3.0.0",
     "nodemon": "^2.0.20"
   },
   "devDependencies": {
