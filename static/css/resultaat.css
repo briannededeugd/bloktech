@@ -1,0 +1,335 @@
+@font-face {
+    font-family: 'Material Icons';
+    font-style: normal;
+    font-weight: 400;
+    src: url(/public/dist/font/Material-Design-Icons.eot); /* For IE6-8 */
+    src: url(/public/dist/font/Material-Design-Icons.woff2) format('woff2'),
+         url(/public/dist/font/Material-Design-Icons.woff) format('woff'),
+         url(/public/dist/font/Material-Design-Icons.ttf) format('truetype');
+  }
+
+
+
+/*****************************/
+/* HELE PAGINA, ALLE CONTENT */
+/*****************************/
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+body > section {
+    overflow: hidden;
+    width: 95vw;
+    height: 95vh;
+    padding: 0 10px;
+    position: relative;
+    border-radius: 15px;
+}
+
+body > section i {
+    cursor: pointer;
+}
+
+.material-icons {
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;  /* Preferred icon size */
+    color: white !important;
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    line-height: 1;
+    text-transform: none;
+    letter-spacing: normal;
+    word-wrap: normal;
+    white-space: nowrap;
+    direction: ltr;
+    z-index: 200;
+  
+    /* Support for all WebKit browsers. */
+    -webkit-font-smoothing: antialiased;
+    /* Support for Safari and Chrome. */
+    text-rendering: optimizeLegibility;
+  
+    /* Support for Firefox. */
+    -moz-osx-font-smoothing: grayscale;
+  
+    /* Support for IE. */
+    font-feature-settings: 'liga';
+  }
+
+body > section a:first-of-type {
+    width: 1em;
+    height: 1em;
+    margin: 0;
+}
+
+/*********************************************************/
+/* DISPLAYS, CENTRERING VAN ALLES WAT IN HET MIDDEN MOET */
+/*********************************************************/
+
+body > section > section:first-of-type, /* Top bar */
+body > section > section:nth-of-type(3), /* Voortgang area */
+body > section > section:nth-of-type(3) > section:nth-of-type(2), /* Song timer */
+body > section > section:nth-of-type(4), /* Controls */
+body > section > section:nth-of-type(5) > section, /* Muziek lijst header */
+body > section > section:nth-of-type(5) > section ul li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+
+
+
+/***********/
+/* Top bar */
+/***********/
+body > section > section:first-of-type {
+    margin: 0;
+}
+
+body > section > section:first-of-type i {
+    font-size: 30px;
+}
+
+body > section > section:first-of-type i:first-child {
+    margin-left: -7px;
+}
+
+body > section > section:first-of-type h1 {
+    font-size: 18px;
+    margin-left: -3px;
+}
+
+
+/****************/
+/* Lied details */
+/****************/
+body > section > section:nth-of-type(2) {
+    margin: 1em 0 6em;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    left: 0;
+    text-align: center;
+}
+
+/* body > section > section:nth-of-type(3) p {
+    color: white;
+} */
+
+body > section > section:nth-of-type(2) p {
+    margin: 0;
+}
+
+body > section > section:nth-of-type(2) p:first-of-type {
+    font-size: 21px;
+}
+
+body > section > section:nth-of-type(2) p:nth-of-type(2) {
+    font-size: 18px;
+    opacity: 0.9;
+    line-height: 35px;
+}
+
+
+
+
+
+
+/******************/
+/* Voortgang area */
+/******************/
+body > section > section:nth-of-type(3) { /* progress / voortgang area */
+    height: 6px;
+    width: 95%;
+
+    margin-bottom: 5em;
+    border-radius: 50px;
+    cursor: pointer;
+    position: absolute;
+    bottom: 0;
+    background-color:grey;
+}
+
+body > section > section:nth-of-type(3) > section:first-of-type { /* bar */
+    height: inherit;
+    width: 0%;
+    position: relative;
+    border-radius: inherit;
+    /* background: ; */
+}
+
+body > section > section:nth-of-type(3) > section:first-of-type::before {
+    content: "";
+    position: absolute;
+    height: 12px;
+    width: 12px;
+    border-radius: 50%;
+    top: 50%;
+    right: -5px;
+    z-index: 2;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-50%);
+    background: inherit;
+    transition: opacity .2s ease;
+}
+
+body > section > section:nth-of-type(3):hover > section:first-of-type::before {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+body > section > section:nth-of-type(3) > section:nth-of-type(2) {
+    margin-top: 2em;
+    justify-content: space-between;
+    width: 100%;
+}
+
+body > section > section:nth-of-type(3) > section:nth-of-type(2) span {
+    font-size: 13px;
+    /* color: ; */
+}
+
+
+
+
+
+/************/
+/* CONTROLS */
+/************/
+body > section > section:nth-of-type(4) {
+    margin: 40px 0 5px 0;
+    color: white;
+    position: absolute;
+    width: 100%;
+    left: 0;
+    bottom: 0;
+}
+
+body > section > section:nth-of-type(4) i:nth-child(2),
+body > section > section:nth-of-type(4) i:nth-child(4) {
+    font-size: 43px;
+}
+
+body > section > section:nth-of-type(4) #prev {
+    margin-right: -13px;
+}
+
+body > section > section:nth-of-type(4) #next {
+    margin-left: -13px;
+}
+
+body > section > section:nth-of-type(4) > section {
+    height: 54px;
+    width: 54px;
+    display: flex;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+body > section > section:nth-of-type(4) > section i {
+    height: 43px;
+    width: 43px;
+    line-height: 43px;
+    text-align: center;
+    background: inherit;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    position: absolute;
+}
+
+body > section > section:nth-of-type(4) i#play-knop {
+    font-size: 43px !important;
+    height: 43px;
+    width: 43px
+}
+
+
+/***************/
+/* MUZIEKLIJST */
+/***************/
+body > section > section:nth-of-type(5) {
+    position: absolute;
+    /* background:; */
+    width: 100%;
+    left: 0;
+    bottom: -55%;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 5;
+    padding: 15px 30px;
+    border-radius: 15px;
+    transition: all .15s ease-out;
+}
+
+body > section > section:nth-of-type(5).show {
+    bottom: 0;
+    opacity: 1;
+    pointer-events: auto;
+}
+
+body > section > section:nth-of-type(5) > section > section {
+    display: flex;
+    align-items: center;
+    font-size: 19px;
+    /* color: ; */
+}
+
+body > section > section:nth-of-type(5) > section > section i {
+    cursor: default;
+}
+
+body > section > section:nth-of-type(5) > section > section p {
+    margin-left: 5px;
+}
+
+body > section > section:nth-of-type(5) > section #close {
+    font-size: 22px;
+    /* color: ; */
+}
+
+body > section > section:nth-of-type(5) ul {
+    margin: 10px 0;
+    max-height: 260px;
+    overflow: auto;
+}
+
+body > section > section:nth-of-type(5) ul::-webkit-scrollbar {
+    width: 0px;
+}
+
+body > section > section:nth-of-type(5) ul li {
+    list-style: none;
+    display: flex;
+    cursor: pointer;
+    padding-bottom: 10px;
+    margin-bottom: 5px;
+    /* color: ; */
+    border-bottom: 1px solid grey;
+}
+
+body > section > section:nth-of-type(5) ul li:last-child {
+    border-bottom: 0px;
+}
+
+body > section > section:nth-of-type(5) ul li,
+body > section > section:nth-of-type(5) > section > section p {
+    font-size: 17px;
+    opacity: 0.9;
+}
+
+ul li {
+    font-size: 16px;
+}

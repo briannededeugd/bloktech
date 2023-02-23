@@ -17,7 +17,7 @@
         <h1><em>In welke taal</em> luister jij het liefst naar muziek?</h1>
     </section>
 
-    <form action="/scripts/server.js" method="get">
+    <form action="/scripts/server.js" method="get" id="form-t">
 
         <input type="checkbox" name="taal" id="nederlands">
         <label for="nederlands">Nederlands</label>
@@ -40,12 +40,12 @@
 
         <!-- progress bar -->
 
-        <a href="/">
-            <img src="img/next.png" alt="Knop om verder te gaan">
+        <a href="/resultaat">
+            <img src="img/next.png" alt="Knop om verder te gaan" class="next-button-t">
         </a>
     </footer>
 
-    <script src="server.js"></script>
+    <script src="/js/index.js"></script>
 </body>
 
 </html>

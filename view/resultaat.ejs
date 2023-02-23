@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rhythm Roulette</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/resultaat.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://use.typekit.net/rqn2umt.css">
+    
+</head>
+
+<body>
+
+    <!-- Wrapper -->
+    <section>
+        <!-- Top bar -->
+        <section>
+            <a href="/">
+                <img src="img/home.png" alt="Knop om terug te gaan naar startscherm">
+            </a>
+
+            <h1>Huidig lied</h1>
+
+            <i class="material-icons">more_horiz</i>
+        </section>
+
+        <!-- Lied details -->
+        <section>
+            <p><%= title %></p>
+            <p><%= artist %></p>
+        </section>
+
+        <!-- Voortgang area -->
+        <section>
+            <section>
+                <audio id="current-audio" src=""></audio>
+            </section>
+
+            <!-- song timer -->
+            <section>
+                <span id="huidige-tijd">0:00</span>
+                <span id="max-tijd">0:00</span>
+            </section>
+        </section>
+
+        <!-- Controls -->
+        <section>
+            <i id="herhaal-playlist" class="material-icons" title="playlist opnieuw">repeat</i>
+            <i id="prev" class="material-icons">skip_previous</i>
+
+            <i id="play-knop" class="material-icons">play_arrow</i>
+
+            <i id="next" class="material-icons">skip_next</i>
+            <i id="meer-muziek" class="material-icons">queue_music</i>
+        </section>
+
+        <!-- Muziek lijst -->
+        <section>
+            <!-- Header -->
+            <section>
+                <!-- Rij -->
+                <section>
+                    <i class="list material-icons">queue_music</i>
+                    <p>Wachtrij</p>
+                </section>
+                <i id="close" class="material-icons">close</i>
+            </section>
+
+            <ul>
+
+            </ul>
+        </section>
+    </section>
+
+    <script src="/js/index.js"></script>
+</body>

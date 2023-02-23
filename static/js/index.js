@@ -1,42 +1,74 @@
 // const express = require('express');
-// const path = require('path');
-// const app = express();
-// const PORT = process.env.PORT || 8080;
+console.log("Hello World")
 
-// // Met express.static zeg ik dat mijn server alle statische files mag gebruiken in de directory.
-// // Daarna zeg ik dat hij alle bestanden in de css directory mag gebruiken.
-// app.use(express.static("static"));
+const nextButton = document.getElementById('next-button-v');
+const formulier = document.getElementById('form-v');
+
+const nextButtonM = document.getElementById('next-button-m');
+const formulierM = document.getElementById('form-m');
+
+const nextButtonT = document.getElementById('next-button-t');
+const formulierT = document.getElementById('form-t');
+
+nextButton.addEventListener('click', () => {
+    formulier.submit();
+})
+
+nextButtonM.addEventListener('click', () => {
+    formulierM.submit();
+})
+
+nextButtonT.addEventListener('click', () => {
+    formulierT.submit();
+})
 
 
-// // req staat voor 'request', dus wat de HTTP request is, en res staat voor 'response' wat een express app terugstuurt 
-// app.get('/', onHome)
 
-// function onHome(req, res) {
-//     // res.send('Hallo');
-//     res.sendFile(path.join(__dirname, 'view/index.html'));
-// }
 
-// app.get('/voelen', onVoelen)
 
-// function onVoelen(req, res) {
-//     // res.send('Hallo');
-//     res.sendFile(path.join(__dirname, 'view/voelen.html'));
-// }
-  
-// app.get('/taal', onTaal)
 
-// function onTaal(req, res) {
-//     res.sendFile(path.join(__dirname, 'view/taal.html'));
-// };
+// Gebruiker kan alleen door als er tenminste één checkbox geselecteerd is + DIT WERKT NOG NIET
+const checkboxes = document.querySelectorAll('input[type=checkbox]');
 
-// app.get('/muziekelement', onMuziekelement)
+function updateNextLink() {
+  let isChecked = false;
+  checkboxes.forEach((checkbox) => {
+    if (checkbox.checked) {
+      isChecked = true;
+    }
+  });
+  if (isChecked) {
+    nextButton.removeAttribute('disabled');
+    nextButtonM.removeAttribute('disabled');
+    nextButtonT.removeAttribute('disabled');
+  } else {
+    nextButton.setAttribute('disabled', true);
+    nextButtonM.setAttribute('disabled', true);
+    nextButtonT.setAttribute('disabled', true);
+  }
+}
 
-// function onMuziekelement(req, res) {
-//     res.sendFile(path.join(__dirname, 'view/muziekelement.html'));
-// };
+checkboxes.forEach((checkbox) => {
+  checkbox.addEventListener('change', updateNextLink);
+});
 
-// app.get('*', function(req, res) {
-//   res.status(404).send('Page not found');
-// });
+updateNextLink();
 
-// app.listen(PORT, () => console.log('Running on port: 8080'));
+
+
+
+
+// deze code werkt niet :( ?
+const playButton = document.querySelector('body > section > section:nth-of-type(4)');
+
+// Muziek op play
+playButton.addEventListener('click', () => {
+
+  console.log('Knop geklikt');
+
+  if (playButton.textContent === 'play_arrow') {
+  playButton.textContent = 'pause';
+  } else {
+    playButton.textContent = 'play_arrow';
+  }
+});
