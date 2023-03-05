@@ -4,7 +4,9 @@
       "artist": "BTS, Halsey",
       "moods": ["optimistisch", "geïnspireerd", "gemotiveerd", "liefdevol"],
       "language": ["korean", "english"],
-      "feature": ["melodie", "beat", "vibe"]
+      "feature": ["melodie", "beat", "vibe"],
+      "audiofile": "",
+      "coverart": ""
     },
     {
         "id": "loserlover",
@@ -12,7 +14,9 @@
         "artist": "TOMORROW X TOGETHER",
         "moods": ["energiek", "ergerlijk", "gefrustreerd", "boos"],
         "language": "korean",
-        "feature": ["beat", "vibe", "instrumenten", "backing-vocals"]
+        "feature": ["beat", "vibe", "instrumenten", "backing-vocals"],
+        "audiofile": "",
+        "coverart": ""
     },
     {
         "id": "tomyyouth",
@@ -20,7 +24,9 @@
         "artist": "BOL4",
         "moods": ["liefdevol", "rustig", "verdrietig", "vermoeid"],
         "language": "korean",
-        "feature": ["stem-artiest", "melodie", "beat"]
+        "feature": ["stem-artiest", "melodie", "beat"],
+        "audiofile": "",
+        "coverart": ""
     },
     {
         "id": "jasmine",
@@ -28,23 +34,29 @@
         "artist": "DPR Live",
         "moods": "neutraal",
         "language": "korean",
-        "feature": ["beat", "melodie", "vibe"]
+        "feature": ["beat", "melodie", "vibe"],
+        "audiofile": "",
+        "coverart": ""
     },
     {
-        "id": "",
-        "title": "",
-        "artist": "",
+        "id": "lotsofnothing",
+        "title": "Lots of Nothing",
+        "artist": "Spacey Jane",
         "moods": ["optimistisch", "geïnspireerd", "gemotiveerd", "liefdevol"],
         "language": "english",
-        "feature": ""
+        "feature": ["beat", "stem-artiest", "vibe"],
+        "audiofile": "",
+        "coverart": ""
     },
     {
-        "id": "",
-        "title": "",
-        "artist": "",
+        "id": "elephant",
+        "title": "Elephant",
+        "artist": "Tame Impala",
         "moods": ["energiek", "ergerlijk", "gefrustreerd", "boos"],
         "language": "english",
-        "feature": ""
+        "feature": ["beat", "instrumenten", "melodie"],
+        "audiofile": "",
+        "coverart": ""
     },
     {
         "id": "onthetrainridehome",
@@ -52,15 +64,19 @@
         "artist": "The Paper Kites",
         "moods": ["liefdevol", "rustig", "verdrietig", "vermoeid"],
         "language": "english",
-        "feature": ["stem-artiest", "vibe"]
+        "feature": ["stem-artiest", "vibe"],
+        "audiofile": "",
+        "coverart": ""
     },
     {
-        "id": "",
-        "title": "",
-        "artist": "",
-        "moods": "",
+        "id": "bluehair",
+        "title": "Blue Hair",
+        "artist": "TV Girl",
+        "moods": "neutraal",
         "language": "english",
-        "feature": ""
+        "feature": ["melodie", "beat", "instrumenten"],
+        "audiofile": "",
+        "coverart": ""
     },
     {
         "id": "",
@@ -68,7 +84,9 @@
         "artist": "",
         "moods": ["optimistisch", "geïnspireerd", "gemotiveerd", "liefdevol"],
         "language": "dutch",
-        "feature": ""
+        "feature": "",
+        "audiofile": "",
+        "coverart": ""
     },
     {
         "id": "",
@@ -76,22 +94,28 @@
         "artist": "",
         "moods": ["energiek", "ergerlijk", "gefrustreerd", "boos"],
         "language": "dutch",
-        "feature": ""
+        "feature": "",
+        "audiofile": "",
+        "coverart": ""
+    },
+    {
+        "id": "vonken",
+        "title": "Vonken",
+        "artist": "Gianski, ",
+        "moods": ["liefdevol", "rustig", "verdrietig", "vermoeid"],
+        "language": "dutch",
+        "feature": "",
+        "audiofile": "",
+        "coverart": ""
     },
     {
         "id": "",
         "title": "",
         "artist": "",
-        "moods": "",
+        "moods": "neutraal",
         "language": "dutch",
-        "feature": ""
-    },
-    {
-        "id": "",
-        "title": "",
-        "artist": "",
-        "moods": "",
-        "language": "dutch",
-        "feature": ""
+        "feature": "",
+        "audiofile": "",
+        "coverart": ""
     }
 ]
