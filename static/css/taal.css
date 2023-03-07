@@ -1,9 +1,9 @@
-body > form label {
-    line-height: 32;
-    height: 17.75em;
-    width: 11.75em;
+body>form label {
+    line-height: 37;
+    height: 37vh;
+    width: 40vw;
 }
 
-footer > a:first-of-type img {
+footer>a:first-of-type img {
     transform: rotate(180deg);
 }

@@ -1,14 +1,15 @@
-// deze code werkt niet :( ?
-const playButton = document.getElementById('#play-knop');
+// Play knop wordt pauzeknop als erop wordt geklikt
+const playButton = document.getElementById("play-knop");
 
-// Muziek op play
-playButton.addEventListener('click', () => {
+if (playButton) {
+	// Er wordt eerst gekeken of er een playknop bestaat op de pagina, zodat er geen error komt
+	playButton.addEventListener("click", () => {
+		console.log("Knop geklikt");
 
-  console.log('Knop geklikt');
-
-  if (playButton.textContent === 'play_arrow') {
-  playButton.textContent = 'pause';
-  } else {
-    playButton.textContent = 'play_arrow';
-  }
-});
+		if (playButton.textContent === "play_arrow") {
+			playButton.textContent = "pause";
+		} else {
+			playButton.textContent = "play_arrow";
+		}
+	});
+}

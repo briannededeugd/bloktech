@@ -1,4 +1,4 @@
-body>section:first-of-type {
+body>section:nth-of-type(2) {
     position: absolute;
     width: 75%;
     top: 50%;
@@ -6,6 +6,45 @@ body>section:first-of-type {
     transform: translate(-50%, -50%);
 }
 
-section>section {
+body>section:nth-of-type(2)>section {
     margin-bottom: 2em;
+}
+
+
+
+#background-container {
+    position: absolute;
+    width: 300%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+
+    animation: slide 10s linear infinite;
+}
+
+
+#albums-loop {
+    position: absolute;
+    height: 100%;
+    width: 500%;
+    top: 0;
+    left: 0;
+    padding: 0 2.5em;
+    background: url("../img/albumsloop.png");
+    opacity: 0.6;
+    display: block;
+    background-repeat: space;
+
+    animation: slide 120s linear infinite;
+}
+
+@keyframes slide {
+    0% {
+        transform: translate3d(0, 0, 0);
+    }
+
+    100% {
+        transform: translate3d(-441px, 0, 0);
+    }
 }
