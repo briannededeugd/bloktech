@@ -1,5 +1,7 @@
 body {
     position: absolute;
+    background: url("../img/bg-voel.png");
+    background-size: cover;
 }
 
 
@@ -19,7 +21,13 @@ body>section:first-of-type>p {
 
 
 form label {
-    height: 17.5vh;
+    height: 16.5vh;
     width: 25vw;
-    line-height: 16;
+}
+
+body>form input[type="checkbox"]:checked+label:first-of-type,
+body>form input[type="checkbox"]:checked+label:nth-of-type(2) {
+    background-image: none;
+    color: var(--color-background);
+    box-shadow: 0 0 0 1px var(--color-knoppen);
 }

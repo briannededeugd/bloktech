@@ -1,5 +1,11 @@
+body {
+    position: absolute;
+    background: url("../img/bg-element.png");
+    background-size: cover;
+    background-blend-mode: lighten;
+}
+
 body>form label {
-    line-height: 21;
     height: 23vh;
     width: 30vw;
 
@@ -9,78 +15,9 @@ footer>a:first-of-type img {
     transform: rotate(180deg);
 }
 
-
-
-
-
-label[for=beat] {
-    background: url("../img/newjeans.jpeg");
-    background-size: 100% 100%;
-}
-
-body>form input[type="checkbox"]:checked+label[for=beat] {
-    background: url("../img/arianagrande.jpeg");
-    background-size: 100% 100%;
-}
-
-
-
-label[for=melodie] {
-    background: url("../img/newjeans.jpeg");
-    background-size: 100% 100%;
-}
-
-body>form input[type="checkbox"]:checked+label[for=melodie] {
-    background: url("../img/arianagrande.jpeg");
-    background-size: 100% 100%;
-}
-
-
-
-label[for=vocals] {
-    background: url("../img/newjeans.jpeg");
-    background-size: 100% 100%;
-}
-
-body>form input[type="checkbox"]:checked+label[for=vocals] {
-    background: url("../img/arianagrande.jpeg");
-    background-size: 100% 100%;
-}
-
-
-
-label[for=instrumenten] {
-    background: url("../img/newjeans.jpeg");
-    background-size: 100% 100%;
-}
-
-body>form input[type="checkbox"]:checked+label[for=instrumenten] {
-    background: url("../img/arianagrande.jpeg");
-    background-size: 100% 100%;
-}
-
-
-
-
-label[for=backingvocals] {
-    background: url("../img/newjeans.jpeg");
-    background-size: 100% 100%;
-}
-
-body>form input[type="checkbox"]:checked+label[for=backingvocals] {
-    background: url("../img/arianagrande.jpeg");
-    background-size: 100% 100%;
-}
-
-
-
-
-label[for=vibe] {
-    background: url("../img/newjeans.jpeg");
-    background-size: 100% 100%;
-}
-
-body>form input[type="checkbox"]:checked+label[for=vibe] {
-    background: url("../img/arianagrande.jpeg");
-    background-size: 100% 100%;
+body>form input[type="checkbox"]:checked+label:nth-of-type(2),
+body>form input[type="checkbox"]:checked+label:nth-of-type(4) {
+    background-image: none;
+    color: var(--color-background);
+    box-shadow: 0 0 0 1px var(--color-knoppen);
 }

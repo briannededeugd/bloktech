@@ -32,6 +32,8 @@ body {
     background-color: var(--color-background);
     color: var(--color-text);
     font-family: poppins-reg, Arial, Helvetica, sans-serif;
+    background-repeat: no-repeat !important;
+    background-size: contain;
 
 }
 
@@ -86,26 +88,45 @@ body>form input[type="checkbox"] {
     cursor: pointer;
 }
 
+
+
 body>form label {
     font-family: poppins-reg, Arial, Helvetica, sans-serif;
     color: var(--color-text);
     text-align: center;
     font-size: .9em;
 
-    background-image: linear-gradient(300deg, #525b78, #2f3855 80%);
-    border-radius: 1em;
-    border: none;
+
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
 
     position: relative;
     vertical-align: bottom;
 
     flex-grow: 1;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+form>label>p {
+    margin: .25em auto 0;
+}
+
+form>label>img {
+    height: 6.5vh;
+    margin-bottom: 0.25em;
 }
 
 body>form input[type="checkbox"]:checked+label {
     background-image: none;
-    background-color: var(--color-knoppen);
-    color: var(--color-vlakken);
+    color: var(--color-knoppen);
+    box-shadow: 0 0 0 1px var(--color-knoppen);
 }
 
 body:not(footer) {

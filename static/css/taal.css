@@ -1,9 +1,21 @@
+body {
+    position: absolute;
+    background: url("../img/bg-taal.png");
+    background-size: cover;
+    background-blend-mode: lighten;
+}
+
 body>form label {
-    line-height: 37;
-    height: 37vh;
+    height: 35vh;
     width: 40vw;
 }
 
 footer>a:first-of-type img {
     transform: rotate(180deg);
+}
+
+body>form input[type="checkbox"]:checked+label:first-of-type {
+    background-image: none;
+    color: var(--color-background);
+    box-shadow: 0 0 0 1px var(--color-knoppen);
 }

@@ -1,54 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Rhythm Roulette</title>
+		<link rel="stylesheet" type="text/css" href="css/style.css" />
+		<link rel="stylesheet" type="text/css" href="css/element.css" />
+		<link rel="stylesheet" href="https://use.typekit.net/rqn2umt.css" />
+	</head>
+	<body>
+		<section>
+			<h1>Naar welk muziekelement <em>luister je het meest</em>?</h1>
+		</section>
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rhythm Roulette</title>
-    <link rel="stylesheet" type="text/css" href="css/style.css">
-    <link rel="stylesheet" type="text/css" href="css/element.css">
-    <link rel="stylesheet" href="https://use.typekit.net/rqn2umt.css">
-</head>
-<body>
-    
-    <section>
-        <h1>Naar welk muziekelement <em>luister je het meest</em>?</h1>
-    </section>
+		<form action="/scripts/server.js" method="get" id="form-m">
+			<input type="checkbox" name="beat" id="beat" />
+			<label for="beat">
+				<img src="img/element-beat.png" id="beatImage" />
+				<p>Beat</p>
+			</label>
 
-    <form  action="/scripts/server.js" method="get" id="form-m">
+			<input type="checkbox" name="melodie" id="melodie" />
+			<label for="melodie">
+				<img src="img/element-melodie.png" id="melodieImage" />
+				<p>Melodie</p>
+			</label>
 
-        <input type="checkbox" name="beat" id="beat">
-        <label for="beat">Beat</label>
+			<input type="checkbox" name="vocals" id="vocals" />
+			<label for="vocals">
+				<img src="/img/element-stemartiest.png" id="stemartiestImage" />
+				<p>Stem artiest</p>
+			</label>
 
-        <input type="checkbox" name="melodie" id="melodie">
-        <label for="melodie">Melodie</label>
+			<input type="checkbox" name="instrumenten" id="instrumenten" />
+			<label for="instrumenten">
+				<img src="img/element-instrumenten.png" id="instrumentenImage" />
+				<p>Instrumenten</p>
+			</label>
 
-        <input type="checkbox" name="vocals" id="vocals">
-        <label for="vocals">Stem artiest</label>
+			<input type="checkbox" name="backingvocals" id="backingvocals" />
+			<label for="backingvocals">
+				<img src="img/element-backingvocals.png" id="backingvocalsImage" />
+				<p>Backing vocals</p>
+			</label>
 
-        <input type="checkbox" name="instrumenten" id="instrumenten">
-        <label for="instrumenten">Instrumenten</label>
+			<input type="checkbox" name="vibe" id="vibe" />
+			<label for="vibe">
+				<img src="img/element-vibe.png" id="vibeImage" />
+				<p>Vibe</p>
+			</label>
+		</form>
 
-        <input type="checkbox" name="backingvocals" id="backingvocals">
-        <label for="backingvocals">Backing vocals</label>
+		<footer>
+			<a href="/voelen">
+				<img src="img/next.png" alt="Knop om terug te gaan naar startscherm" />
+			</a>
 
-        <input type="checkbox" name="vibe" id="vibe">
-        <label for="vibe">Vibe</label>
-    </form>
+			<!-- progress bar -->
 
-   <footer>
-        <a href="/voelen">
-            <img src="img/next.png" alt="Knop om terug te gaan naar startscherm">
-        </a>
+			<a href="/taal">
+				<img
+					src="img/next.png"
+					alt="Knop om verder te gaan"
+					id="next-button-m"
+				/>
+			</a>
+		</footer>
 
-        <!-- progress bar -->
-
-        <a href="/taal">
-            <img src="img/next.png" alt="Knop om verder te gaan" id="next-button-m">
-        </a>
-    </footer>
-
-    <script src="/js/index.js"></script>
-</body>
+		<script src="/js/index.js"></script>
+	</body>
 </html>

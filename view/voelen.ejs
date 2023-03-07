@@ -1,76 +1,114 @@
 <!DOCTYPE html>
 <html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Rhythm Roulette</title>
+		<link rel="stylesheet" type="text/css" href="css/style.css" />
+		<link rel="stylesheet" type="text/css" href="css/voelen.css" />
+		<link rel="stylesheet" href="https://use.typekit.net/rqn2umt.css" />
+	</head>
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rhythm Roulette</title>
-    <link rel="stylesheet" type="text/css" href="css/style.css">
-    <link rel="stylesheet" type="text/css" href="css/voelen.css">
-    <link rel="stylesheet" href="https://use.typekit.net/rqn2umt.css">
-</head>
+	<body>
+		<div class="blob"></div>
 
-<body>
+		<section>
+			<h1><em>Hoe voel jij je</em> op dit moment?</h1>
+			<p>Selecteer minimaal één optie.</p>
+		</section>
 
-    <section>
-        <h1><em>Hoe voel jij je</em> op dit moment?</h1>
-        <p>Selecteer minimaal één optie.</p>
-    </section>
+		<form action="/userPost" method="post" id="form-v">
+			<input type="checkbox" name="optimistisch" id="optimistisch" />
+			<label for="optimistisch">
+				<img src="img/voel-optimistisch.png" id="optimistischImage" />
+				<p>Optimistisch</p>
+			</label>
 
-    <form action="/userPost" method="post" id="form-v">
+			<input type="checkbox" name="energiek" id="energiek" />
+			<label for="energiek">
+				<img src="img/voel-energiek.png" id="energiekImage" />
+				<p>Energiek</p>
+			</label>
 
-        <input type="checkbox" name="optimistisch" id="optimistisch">
-        <label for="optimistisch">Optimistisch</label>
+			<input type="checkbox" name="liefdevol" id="liefdevol" />
+			<label for="liefdevol">
+				<img src="img/voel-liefdevol.png" id="liefdevolImage" />
+				<p>Liefdevol</p>
+			</label>
 
-        <input type="checkbox" name="energiek" id="energiek">
-        <label for="energiek">Energiek</label>
+			<input type="checkbox" name="geinspireerd" id="geinspireerd" />
+			<label for="geinspireerd">
+				<img src="img/voel-geinspireerd.png" id="geinspireerdImage" />
+				<p>Geïnspireerd</p>
+			</label>
 
-        <input type="checkbox" name="liefdevol" id="liefdevol">
-        <label for="liefdevol">Liefdevol</label>
+			<input type="checkbox" name="gemotiveerd" id="gemotiveerd" />
+			<label for="gemotiveerd">
+				<img src="img/voel-gemotiveerd.png" id="gemotiveerdImage" />
+				<p>Gemotiveerd</p>
+			</label>
 
-        <input type="checkbox" name="geinspireerd" id="geinspireerd">
-        <label for="geinspireerd">Geïnspireerd</label>
+			<input type="checkbox" name="rustig" id="rustig" />
+			<label for="rustig">
+				<img src="img/voel-rustig.png" id="rustigImage" />
+				<p>Rustig</p>
+			</label>
 
-        <input type="checkbox" name="gemotiveerd" id="gemotiveerd">
-        <label for="gemotiveerd">Gemotiveerd</label>
+			<input type="checkbox" name="neutraal" id="neutraal" />
+			<label for="neutraal">
+				<img src="img/voel-neutraal.png" id="neutraalImage" />
+				<p>Neutraal</p>
+			</label>
 
-        <input type="checkbox" name="rustig" id="rustig">
-        <label for="rustig">Rustig</label>
+			<input type="checkbox" name="verdrietig" id="verdrietig" />
+			<label for="verdrietig">
+				<img src="img/voel-verdrietig.png" id="verdrietigImage" />
+				<p>Verdrietig</p>
+			</label>
 
-        <input type="checkbox" name="neutraal" id="neutraal">
-        <label for="neutraal">Neutraal</label>
+			<input type="checkbox" name="vermoeid" id="vermoeid" />
+			<label for="vermoeid">
+				<img src="img/voel-vermoeid.png" id="vermoeidImage" />
+				<p>Vermoeid</p>
+			</label>
 
-        <input type="checkbox" name="verdrietig" id="verdrietig">
-        <label for="verdrietig">Verdrietig</label>
+			<input type="checkbox" name="gefrustreerd" id="gefrustreerd" />
+			<label for="gefrustreerd">
+				<img src="img/voel-gefrustreerd.png" id="gefrustreerdImage" />
+				<p>Gefrustreerd</p>
+			</label>
 
-        <input type="checkbox" name="vermoeid" id="vermoeid">
-        <label for="vermoeid">Vermoeid</label>
+			<input type="checkbox" name="ergerlijk" id="ergerlijk" />
+			<label for="ergerlijk">
+				<img src="img/voel-ergerlijk.png" id="ergerlijkImage" />
+				<p>Ergerlijk</p>
+			</label>
 
-        <input type="checkbox" name="gefrustreerd" id="gefrustreerd">
-        <label for="gefrustreerd">Gefrustreerd</label>
+			<input type="checkbox" name="boos" id="boos" />
+			<label for="boos">
+				<img src="img/voel-boos.png" id="boosImage" />
+				<p>Boos</p>
+			</label>
+			<!-- input type submit -->
+		</form>
 
-        <input type="checkbox" name="ergerlijk" id="ergerlijk">
-        <label for="ergerlijk">Ergerlijk</label>
+		<footer>
+			<a href="/">
+				<img src="img/home.png" alt="Knop om terug te gaan naar startscherm" />
+			</a>
 
-        <input type="checkbox" name="boos" id="boos">
-        <label for="boos">Boos</label>
-        <!-- input type submit -->
-    </form>
+			<!-- progress bar -->
 
-    <footer>
-        <a href="/">
-            <img src="img/home.png" alt="Knop om terug te gaan naar startscherm">
-        </a>
+			<a href="/muziekelement">
+				<img
+					src="img/next.png"
+					alt="Knop om verder te gaan"
+					id="next-button-v"
+				/>
+			</a>
+		</footer>
 
-        <!-- progress bar -->
-
-        <a href="/muziekelement">
-            <img src="img/next.png" alt="Knop om verder te gaan" id="next-button-v">
-        </a>
-    </footer>
-
-    <script src="/js/index.js"></script>
-</body>
-
+		<script src="/js/index.js"></script>
+	</body>
 </html>

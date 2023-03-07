@@ -9,8 +9,9 @@ console.log("Hello");
 require("dotenv").config();
 
 // MONGO DB CONNECTIE
-const { MongoClient } = require("mongodb");
+const mongoose = require("mongoose");
 
+// DB
 const uri =
 	"mongodb+srv://" +
 	process.env.DB_USERNAME +
@@ -21,22 +22,35 @@ const uri =
 	"." +
 	process.env.DB_HOST +
 	"/" +
-	"?retryWrites=true&w=majority";
+	"?tls=true&retryWrites=true&w=majority";
 
-console.log(uri);
-
-const client = new MongoClient(uri, {
+mongoose.connect(uri, {
 	useNewUrlParser: true,
 	useUnifiedTopology: true,
 });
-
-client.connect((err) => {
-	if (err) {
-		console.error("Error connecting to MongoDB:", err);
-	} else {
-		console.log("Connected to MongoDB!");
-	}
+const db = mongoose.connection;
+db.on("error", console.error.bind(console, "connection error:"));
+db.once("open", () => {
+	console.log("db connected!");
 });
+
+// retryWrites=true&w=majority"
+
+// console.log(uri);
+
+// const client = new MongoClient(uri, {
+// 	useNewUrlParser: true,
+// 	useUnifiedTopology: true,
+// });
+
+// client.connect((err, db) => {
+// 	if (err) {
+// 		console.error("Error connecting to MongoDB:", err);
+// 	} else {
+// 		console.log("Connected to MongoDB!");
+// 	}
+// 	db.close();
+// });
 
 /////////////////////////////////////
 ////// BASIC BENODIGDE CONSTS EN APPS
