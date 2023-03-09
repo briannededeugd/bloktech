@@ -37,6 +37,7 @@
   "homepage": "https://github.com/briannededeugd/matching-application#readme",
   "dependencies": {
     "@babel/cli": "^7.21.0",
+    "body-parser": "^1.20.2",
     "camelcase": "^7.0.1",
     "dotenv": "^16.0.3",
     "ejs": "^3.1.8",

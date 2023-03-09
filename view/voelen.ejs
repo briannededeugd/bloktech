@@ -11,103 +11,123 @@
 	</head>
 
 	<body>
-		<div class="blob"></div>
-
 		<section>
 			<h1><em>Hoe voel jij je</em> op dit moment?</h1>
 			<p>Selecteer minimaal één optie.</p>
 		</section>
 
 		<form action="/userPost" method="post" id="form-v">
-			<input type="checkbox" name="optimistisch" id="optimistisch" />
+			<input
+				type="checkbox"
+				name="moods"
+				value="optimistisch"
+				id="optimistisch"
+			/>
 			<label for="optimistisch">
 				<img src="img/voel-optimistisch.png" id="optimistischImage" />
 				<p>Optimistisch</p>
 			</label>
 
-			<input type="checkbox" name="energiek" id="energiek" />
+			<input type="checkbox" name="moods" value="energiek" id="energiek" />
 			<label for="energiek">
 				<img src="img/voel-energiek.png" id="energiekImage" />
 				<p>Energiek</p>
 			</label>
 
-			<input type="checkbox" name="liefdevol" id="liefdevol" />
+			<input type="checkbox" name="moods" value="liefdevol" id="liefdevol" />
 			<label for="liefdevol">
 				<img src="img/voel-liefdevol.png" id="liefdevolImage" />
 				<p>Liefdevol</p>
 			</label>
 
-			<input type="checkbox" name="geinspireerd" id="geinspireerd" />
+			<input
+				type="checkbox"
+				name="moods"
+				value="geinspireerd"
+				id="geinspireerd"
+			/>
 			<label for="geinspireerd">
 				<img src="img/voel-geinspireerd.png" id="geinspireerdImage" />
 				<p>Geïnspireerd</p>
 			</label>
 
-			<input type="checkbox" name="gemotiveerd" id="gemotiveerd" />
+			<input
+				type="checkbox"
+				name="moods"
+				value="gemotiveerd"
+				id="gemotiveerd"
+			/>
 			<label for="gemotiveerd">
 				<img src="img/voel-gemotiveerd.png" id="gemotiveerdImage" />
 				<p>Gemotiveerd</p>
 			</label>
 
-			<input type="checkbox" name="rustig" id="rustig" />
+			<input type="checkbox" name="moods" value="rustig" id="rustig" />
 			<label for="rustig">
 				<img src="img/voel-rustig.png" id="rustigImage" />
 				<p>Rustig</p>
 			</label>
 
-			<input type="checkbox" name="neutraal" id="neutraal" />
+			<input type="checkbox" name="moods" value="neutraal" id="neutraal" />
 			<label for="neutraal">
 				<img src="img/voel-neutraal.png" id="neutraalImage" />
 				<p>Neutraal</p>
 			</label>
 
-			<input type="checkbox" name="verdrietig" id="verdrietig" />
+			<input type="checkbox" name="moods" value="verdrietig" id="verdrietig" />
 			<label for="verdrietig">
 				<img src="img/voel-verdrietig.png" id="verdrietigImage" />
 				<p>Verdrietig</p>
 			</label>
 
-			<input type="checkbox" name="vermoeid" id="vermoeid" />
+			<input type="checkbox" name="moods" value="vermoeid" id="vermoeid" />
 			<label for="vermoeid">
 				<img src="img/voel-vermoeid.png" id="vermoeidImage" />
 				<p>Vermoeid</p>
 			</label>
 
-			<input type="checkbox" name="gefrustreerd" id="gefrustreerd" />
+			<input
+				type="checkbox"
+				name="moods"
+				value="gefrustreerd"
+				id="gefrustreerd"
+			/>
 			<label for="gefrustreerd">
 				<img src="img/voel-gefrustreerd.png" id="gefrustreerdImage" />
 				<p>Gefrustreerd</p>
 			</label>
 
-			<input type="checkbox" name="ergerlijk" id="ergerlijk" />
+			<input type="checkbox" name="moods" value="ergerlijk" id="ergerlijk" />
 			<label for="ergerlijk">
 				<img src="img/voel-ergerlijk.png" id="ergerlijkImage" />
 				<p>Ergerlijk</p>
 			</label>
 
-			<input type="checkbox" name="boos" id="boos" />
+			<input type="checkbox" name="moods" value="boos" id="boos" />
 			<label for="boos">
 				<img src="img/voel-boos.png" id="boosImage" />
 				<p>Boos</p>
 			</label>
-			<!-- input type submit -->
-		</form>
 
-		<footer>
-			<a href="/">
-				<img src="img/home.png" alt="Knop om terug te gaan naar startscherm" />
-			</a>
+			<!-- Submit-knop is ook knop naar volgende pagina -->
+			<input type="hidden" name="nextPage" value="/muziekelement" />
 
-			<!-- progress bar -->
+			<fieldset>
+				<a href="/">
+					<img
+						src="img/home.png"
+						alt="Knop om terug te gaan naar startscherm"
+					/>
+				</a>
 
-			<a href="/muziekelement">
-				<img
-					src="img/next.png"
-					alt="Knop om verder te gaan"
-					id="next-button-v"
+				<input
+					type="image"
+					src="img/nextpage.png"
+					class="next-button-v"
+					alt="Volgende pagina"
 				/>
-			</a>
-		</footer>
+			</fieldset>
+		</form>
 
 		<script src="/js/index.js"></script>
 	</body>

@@ -15,47 +15,60 @@
 			<h1><em>In welke taal</em> luister jij het liefst naar muziek?</h1>
 		</section>
 
-		<form action="/scripts/server.js" method="get" id="form-t">
-			<input type="checkbox" name="taal" id="nederlands" />
+		<form action="/resultaat" method="post" id="form-t">
+			<input
+				type="checkbox"
+				name="language"
+				value="nederlands"
+				id="nederlands"
+			/>
 			<label for="nederlands">
 				<img src="img/taal-nederlands.png" id="nederlandsImage" />
 				<p>Nederlands</p>
 			</label>
 
-			<input type="checkbox" name="taal" id="engels" />
+			<input type="checkbox" name="language" value="engels" id="engels" />
 			<label for="engels">
 				<img src="img/taal-engels.png" id="engelsImage" />
 				<p>Engels</p>
 			</label>
 
-			<input type="checkbox" name="taal" id="koreaans" />
+			<input type="checkbox" name="language" value="koreaans" id="koreaans" />
 			<label for="koreaans">
 				<img src="img/taal-koreaans.png" id="koreaansImage" />
 				<p>Koreaans</p>
 			</label>
 
-			<input type="checkbox" name="taal" id="geenvoorkeur" />
+			<input
+				type="checkbox"
+				name="language"
+				value="geenvoorkeur"
+				id="geenvoorkeur"
+			/>
 			<label for="geenvoorkeur">
 				<img src="img/taal-geenvoorkeur.png" id="geenvoorkeurImage" />
 				<p>Geen voorkeur</p>
 			</label>
-		</form>
 
-		<footer>
-			<a href="/muziekelement">
-				<img src="img/next.png" alt="Knop om terug te gaan naar startscherm" />
-			</a>
+			<!-- Submit-knop is ook knop naar volgende pagina -->
+			<input type="hidden" name="nextPage" value="/resultaat" />
 
-			<!-- progress bar -->
+			<fieldset>
+				<a href="/muziekelement">
+					<img
+						src="img/next.png"
+						alt="Knop om terug te gaan naar muziekelement"
+					/>
+				</a>
 
-			<a href="/resultaat">
-				<img
-					src="img/next.png"
-					alt="Knop om verder te gaan"
+				<input
+					type="image"
+					src="img/nextpage.png"
 					class="next-button-t"
+					alt="Volgende pagina"
 				/>
-			</a>
-		</footer>
+			</fieldset>
+		</form>
 
 		<script src="/js/index.js"></script>
 	</body>

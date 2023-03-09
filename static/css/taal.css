@@ -10,7 +10,7 @@ body>form label {
     width: 40vw;
 }
 
-footer>a:first-of-type img {
+form>fieldset a:first-of-type img {
     transform: rotate(180deg);
 }
 

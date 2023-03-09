@@ -34,24 +34,6 @@ db.once("open", () => {
 	console.log("db connected!");
 });
 
-// retryWrites=true&w=majority"
-
-// console.log(uri);
-
-// const client = new MongoClient(uri, {
-// 	useNewUrlParser: true,
-// 	useUnifiedTopology: true,
-// });
-
-// client.connect((err, db) => {
-// 	if (err) {
-// 		console.error("Error connecting to MongoDB:", err);
-// 	} else {
-// 		console.log("Connected to MongoDB!");
-// 	}
-// 	db.close();
-// });
-
 /////////////////////////////////////
 ////// BASIC BENODIGDE CONSTS EN APPS
 /////////////////////////////////////
@@ -59,30 +41,32 @@ db.once("open", () => {
 const express = require("express");
 const path = require("path");
 const app = express();
+const bodyParser = require("body-parser");
 const PORT = process.env.PORT || 8080;
 
 // Met express.static zeg ik dat mijn server alle statische files mag gebruiken in de directory
 app.set("views", path.join(__dirname, "view"));
 app.set("view engine", "ejs");
 app.use(express.static("static"));
+app.use(express.urlencoded({ extended: true }));
 
-const fs = require("fs");
+// const fs = require("fs");
 
 /////////////////////////////////////
 //////////// DATA LEZEN UIT JSON FILE
 /////////////////////////////////////
 
-// Read the contents of your JSON file
-const jsonData = fs.readFileSync("static/data/songs.json", "utf8");
+// // Read the contents of your JSON file
+// const jsonData = fs.readFileSync("static/data/songs.json", "utf8");
 
-// Parse the JSON data into an array of objects
-const myData = JSON.parse(jsonData);
+// // Parse the JSON data into an array of objects
+// const myData = JSON.parse(jsonData);
 
-// Get a random index from the array
-const randomIndex = Math.floor(Math.random() * myData.length);
+// // Get a random index from the array
+// const randomIndex = Math.floor(Math.random() * myData.length);
 
-// Get the title and mood from the random object
-const title = myData[randomIndex].title;
+// // Get the title and mood from the random object
+// const title = myData[randomIndex].title;
 
 ////////////////////////////////////////////
 ////////////// PAGINA'S INLADEN OP LOCALHOST
@@ -121,8 +105,7 @@ function onTaal(req, res) {
 app.get("/resultaat", onResult);
 
 function onResult(req, res) {
-	res.render("resultaat", { title: myData[3].title, artist: myData[3].artist });
-	console.log({ title });
+	res.render("resultaat");
 }
 
 //////////////////////////////////////////////////////////
@@ -132,10 +115,122 @@ function onResult(req, res) {
 app.post("/userPost", handleUserPost);
 
 function handleUserPost(req, res) {
-	// sla data op in variabele
-	// stuur data naar database
-	// respond naar user met redirect: res.redirect('')
-	res.redirect("");
+	const formData = req.body;
+	const nextPage = formData["nextPage"];
+	res.redirect(nextPage);
+
+	req.session.feature = req.body.feature;
+	req.session.moods = req.body.moods;
+	req.session.language = req.body.language;
+}
+
+////////////////////////////////////////////////////////////////////
+// DE MATCHING -> FORMS VERWERKEN, DATA OPHALEN OP BASIS VAN KEUZES
+////////////////////////////////////////////////////////////////////
+
+// define a schema for your song data
+const songSchema = new mongoose.Schema({
+	title: String,
+	artist: String,
+	moods: [String],
+	language: String,
+	feature: [String],
+});
+
+// model voor song data
+const Song = mongoose.model("Song", songSchema);
+// parse info die je krijgt van de body
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
+// laadt de resultatenpagina met de resultaten van de gemaakte keuzes
+app.post("/resultaat", (req, res) => {
+	// Bepaal wat de gemaakte keuzes waren
+	const feature = req.query.feature; // query verwijst naar de input van de gebruiker
+	const moods = req.query.moods;
+	const language = req.query.language;
+
+	// query object bouwen op basis van user input. Met een query object kan de code
+	// makkelijk dmv een soort 'template' de informatie pakken die nodig is om de goede feedback
+	// te geven (in dit geval die van welk lied het beste past)
+	const query = {};
+	if (feature) {
+		query.feature = feature;
+	}
+	if (moods) {
+		query.moods = moods;
+	}
+	if (language) {
+		query.language = language;
+	}
+
+	// Nadat de query is verstuurd naar de database in MongoDB met .find, volgt er een 'promise', waar
+	// eigenlijk in staat dat uit alle liedjes die terugkomen (songs, want zo heet de collectie in mijn
+	// database) de beste moet worden bepaald. Dat doe ik met een variabele genaamd bestSong. Om het
+	// beste lied daadwerkelijk te vinden, maak ik een functie met alle parameters die ook in de documenten
+	// belangrijk zijn en 'res', zodat ik in de functie iets terug kan sturen naar mijn gebruiker. In de
+	// browser moet de titel van het lied en de artiest geladen worden, zoals bepaald in mijn EJS.
+	Song.find(query)
+		.then((songs) => {
+			const bestSong = findBestSong(songs, feature, moods, language, res);
+			res.render("resultaat", {
+				title: bestSong.title,
+				artist: bestSong.artist,
+			});
+		}) // Error handling
+		.catch((err) => {
+			console.error(err);
+			res.status(500).send("Internal server error");
+		});
+});
+
+// met songs.map pak ik alle liedjes in mijn database en itereer ik over de liedjes. '.map' maakt een gloed-
+// nieuwe array met objects aan die bestaan uit: het lied, de score van het lied. Dit zijn OBJECTS, dus het ziet
+// eruit als:
+//  song { id: .., title: ..., artist: ...,
+//  score: ... } De waarde van score: wordt bepaald door berekenMatch.
+const matchScores = songs.map((song) => ({
+	song,
+	score: berekenMatch(song, feature, moods, language),
+}));
+
+/// berekenMatch berekent ... de match (wie had dat gedacht). Hij kijkt voor elk lied of iets overeenkomt.
+function berekenMatch(song, feature, moods, language) {
+	let score = 0;
+
+	// de score van een lied neemt toe als een gekozen feature overeenkomt met de feature van een lied
+	if (song.feature === feature) {
+		score += 1;
+	} // de score van een lied neemt toe als een gekozen mood overeenkomt met de mood van een lied
+	if (song.moods === moods) {
+		score += 1;
+	} // de score van een lied neemt toe als een gekozen taal overeenkomt met de taal van een lied
+	if (song.language === language) {
+		score += 1;
+	}
+
+	// de score moeten we returnen, want anders kunnen we er later niks meer mee.
+	return score;
+}
+
+// findBestSong bepaalt vervolgens nou echt wat het beste lied is.
+function findBestSong(songs, feature, moods, language, res) {
+	// vind het lied dat de beste match is met de keuzes van de gebruiker
+	let bestMatch = matchScores[0];
+	for (let i = 1; i < matchScores.length; i++) {
+		if (matchScores[i].score > bestMatch.score) {
+			bestMatch = matchScores[i];
+		}
+	}
+
+	if (songs.length >= 1) {
+		const bestSong = findBestSong(songs, feature, moods, language, res);
+		return bestSong.song;
+	} else {
+		console.error("No songs found");
+		res.status(500).send("No songs found");
+		return;
+	}
 }
 
 ////////////////////////////////////////

@@ -14,59 +14,72 @@
 			<h1>Naar welk muziekelement <em>luister je het meest</em>?</h1>
 		</section>
 
-		<form action="/scripts/server.js" method="get" id="form-m">
-			<input type="checkbox" name="beat" id="beat" />
+		<form action="/userPost" method="post" id="form-m">
+			<input type="checkbox" name="feature" value="beat" id="beat" />
 			<label for="beat">
 				<img src="img/element-beat.png" id="beatImage" />
 				<p>Beat</p>
 			</label>
 
-			<input type="checkbox" name="melodie" id="melodie" />
+			<input type="checkbox" name="feature" value="melodie" id="melodie" />
 			<label for="melodie">
 				<img src="img/element-melodie.png" id="melodieImage" />
 				<p>Melodie</p>
 			</label>
 
-			<input type="checkbox" name="vocals" id="vocals" />
+			<input type="checkbox" name="feature" value="vocals" id="vocals" />
 			<label for="vocals">
 				<img src="/img/element-stemartiest.png" id="stemartiestImage" />
 				<p>Stem artiest</p>
 			</label>
 
-			<input type="checkbox" name="instrumenten" id="instrumenten" />
+			<input
+				type="checkbox"
+				name="feature"
+				value="instrumenten"
+				id="instrumenten"
+			/>
 			<label for="instrumenten">
 				<img src="img/element-instrumenten.png" id="instrumentenImage" />
 				<p>Instrumenten</p>
 			</label>
 
-			<input type="checkbox" name="backingvocals" id="backingvocals" />
+			<input
+				type="checkbox"
+				name="feature"
+				value="backingvocals"
+				id="backingvocals"
+			/>
 			<label for="backingvocals">
 				<img src="img/element-backingvocals.png" id="backingvocalsImage" />
 				<p>Backing vocals</p>
 			</label>
 
-			<input type="checkbox" name="vibe" id="vibe" />
+			<input type="checkbox" name="feature" value="vibe" id="vibe" />
 			<label for="vibe">
 				<img src="img/element-vibe.png" id="vibeImage" />
 				<p>Vibe</p>
 			</label>
-		</form>
 
-		<footer>
-			<a href="/voelen">
-				<img src="img/next.png" alt="Knop om terug te gaan naar startscherm" />
-			</a>
+			<!-- Submit-knop is ook knop naar volgende pagina -->
+			<input type="hidden" name="nextPage" value="/taal" />
 
-			<!-- progress bar -->
+			<fieldset>
+				<a href="/voelen">
+					<img
+						src="img/next.png"
+						alt="Knop om terug te gaan naar startscherm"
+					/>
+				</a>
 
-			<a href="/taal">
-				<img
-					src="img/next.png"
-					alt="Knop om verder te gaan"
-					id="next-button-m"
+				<input
+					type="image"
+					src="img/nextpage.png"
+					class="next-button-m"
+					alt="Volgende pagina"
 				/>
-			</a>
-		</footer>
+			</fieldset>
+		</form>
 
 		<script src="/js/index.js"></script>
 	</body>
