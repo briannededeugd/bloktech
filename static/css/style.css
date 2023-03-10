@@ -114,15 +114,6 @@ body>form label {
     align-items: center;
 }
 
-body>form label:hover {
-    background: rgba(255, 255, 255, 0.48);
-    border-radius: 16px;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(5.9px);
-    -webkit-backdrop-filter: blur(5.9px);
-    border: 1px solid rgba(255, 255, 255, 0.13);
-}
-
 form>label>p {
     margin: .25em auto 0;
 }
