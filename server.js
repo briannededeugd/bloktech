@@ -9,25 +9,51 @@ console.log("Hello");
 require("dotenv").config();
 
 // MONGO DB CONNECTIE
+const { MongoClient } = require("mongodb");
 const mongoose = require("mongoose");
+mongoose.connect("mongodb://127.0.0.1:27017/rhythm_roulette");
 
 // DB
-const uri =
-	"mongodb+srv://" +
-	process.env.DB_USERNAME +
-	":" +
-	process.env.DB_PASS +
-	"@" +
-	process.env.DB_NAME +
-	"." +
-	process.env.DB_HOST +
-	"/" +
-	"?tls=true&retryWrites=true&w=majority";
+const uri = process.env.MONGODB_URI;
 
-mongoose.connect(uri, {
+const client = new MongoClient(uri, {
 	useNewUrlParser: true,
 	useUnifiedTopology: true,
 });
+
+client.connect((err) => {
+	if (err) {
+		console.error(err);
+		process.exit(1);
+	}
+
+	mongoose.connect(uri, {
+		useNewUrlParser: true,
+		useUnifiedTopology: true,
+
+		socketTimeoutMS: 50000,
+		connectTimeoutMS: 50000,
+	});
+});
+
+console.log(process.env.MONGODB_URI);
+
+async function main() {
+	const url = "mongodb://127.0.0.01:27017";
+
+	const client = new MongoClient(url);
+
+	try {
+		await client.connect();
+	} catch (e) {
+		console.error(e);
+	} finally {
+		await client.close();
+	}
+}
+
+main().catch(console.error);
+
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "connection error:"));
 db.once("open", () => {
@@ -42,7 +68,7 @@ const express = require("express");
 const path = require("path");
 const app = express();
 const bodyParser = require("body-parser");
-const PORT = process.env.PORT || 9490;
+const PORT = process.env.PORT || 8080;
 
 // Met express.static zeg ik dat mijn server alle statische files mag gebruiken in de directory
 app.set("views", path.join(__dirname, "view"));
@@ -138,12 +164,14 @@ app.use(bodyParser.json());
 // laadt de resultatenpagina met de resultaten van de gemaakte keuzes
 ////////////////////////////////////////////////////////////////////
 
-app.post("/resultaat", (req, res) => {
-	Song.find({
-		feature: { $in: feature },
-		language: { $in: language },
-		moods: { $in: moods },
-	});
+app.post("/resultaat", async (req, res) => {
+	// const song = await Song.find(); //{
+	// // feature: { $in: feature },
+	// // language: { $in: language },
+	// //moods: { $in: moods },}
+	// // ();
+
+	// console.log(song);
 
 	res.render("resultaat", {
 		title: Song.title,
@@ -152,93 +180,18 @@ app.post("/resultaat", (req, res) => {
 		moods: moods,
 		language: language,
 	});
-	console.log(req.body, feature, moods, language);
+
+	console.log("@@-- req.body", req.body);
+	console.log("@@-- feature", feature);
+	console.log("@@-- moods", moods);
+	console.log("@@-- language", language);
 });
 
-////////////////////////////////////////////////////////////////////
-// laadt de resultatenpagina met de resultaten van de gemaakte keuzes
-////////////////////////////////////////////////////////////////////
-
-// Nadat de query is verstuurd naar de database in MongoDB met .find, volgt er een 'promise', waar
-// eigenlijk in staat dat uit alle liedjes die terugkomen (songs, want zo heet de collectie in mijn
-// database) de beste moet worden bepaald. Dat doe ik met een variabele genaamd bestSong. Om het
-// beste lied daadwerkelijk te vinden, maak ik een functie met alle parameters die ook in de documenten
-// belangrijk zijn en 'res', zodat ik in de functie iets terug kan sturen naar mijn gebruiker. In de
-// browser moet de titel van het lied en de artiest geladen worden, zoals bepaald in mijn EJS.
-// 	Song.find(query)
-// 		.then((songs) => {
-// 			// met songs.map pak ik alle liedjes in mijn database en itereer ik over de liedjes. '.map' maakt een gloed-
-// 			// nieuwe array met objects aan die bestaan uit: het lied, de score van het lied. Dit zijn OBJECTS, dus het ziet
-// 			// eruit als:
-// 			//  song { id: .., title: ..., artist: ...,
-// 			//  score: ... } De waarde van score: wordt bepaald door berekenMatch.
-// 			const matchScores = songs.map((song) => ({
-// 				song,
-// 				score: berekenMatch(song, feature, moods, language),
-// 			}));
-
-// 			const bestSong = findBestSong(
-// 				songs,
-// 				matchScores,
-// 				feature,
-// 				moods,
-// 				language,
-// 				res
-// 			);
-// 			if (!res.headersSent) {
-// 				// check of response al is verstuurd voordat hij een tweede keer wordt verstuurd
-// 				res.render("resultaat", {
-// 					title: bestSong.title,
-// 					artist: bestSong.artist,
-// 				});
-// 			}
-// 		}) // Error handling
-// 		.catch((err) => {
-// 			console.error(err);
-// 			res.status(500).send("Internal server error");
-// 		});
-
-////////////////////////////////////////////////////////////////////
-// berekenMatch berekent ... de match (wie had dat gedacht). Hij kijkt voor elk lied of iets overeenkomt.
-////////////////////////////////////////////////////////////////////
-// function berekenMatch(song, feature, moods, language) {
-// 	let score = 0;
-
-// 	// de score van een lied neemt toe als een gekozen feature overeenkomt met de feature van een lied
-// 	if (song.feature === feature) {
-// 		score += 1;
-// 	} // de score van een lied neemt toe als een gekozen mood overeenkomt met de mood van een lied
-// 	if (song.moods === moods) {
-// 		score += 1;
-// 	} // de score van een lied neemt toe als een gekozen taal overeenkomt met de taal van een lied
-// 	if (song.language === language) {
-// 		score += 1;
-// 	}
-
-// 	// de score moeten we returnen, want anders kunnen we er later niks meer mee.
-// 	return score;
-// }
-////////////////////////////////////////////////////////////////////
-// findBestSong bepaalt vervolgens nou echt wat het beste lied is.
-////////////////////////////////////////////////////////////////////
-// function findBestSong(songs, matchScores, feature, moods, language, res) {
-// 	// vind het lied dat de beste match is met de keuzes van de gebruiker
-// 	let bestMatch = matchScores[0];
-// 	for (let i = 1; i < matchScores.length; i++) {
-// 		if (matchScores[i].score > bestMatch.score) {
-// 			bestMatch = matchScores[i];
-// 		}
-// 	}
-
-// 	if (songs.length >= 1) {
-// 		const bestSong = findBestSong(songs, feature, moods, language, res);
-// 		return bestSong.song;
-// 	} else {
-// 		console.error("No songs found");
-// 		// res.status(500).send("No songs found");
-// 		return;
-// 	}
-// }
+// app.get("/database", async function testen(req, res) {
+// 	const list = await Song.find({});
+// 	console.log(list);
+// 	res.end();
+// });
 
 ////////////////////////////////////////
 ////////////////// 404 + LOCALHOST PORT
@@ -248,4 +201,4 @@ app.get("*", function (req, res) {
 	res.status(404).send("Page not found");
 });
 
-app.listen(PORT, () => console.log("Running on port: 9490"));
+app.listen(PORT, () => console.log("Running on port: 8080"));
