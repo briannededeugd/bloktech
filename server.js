@@ -8,58 +8,6 @@ console.log("Hello");
 // NODIG OM .ENV BESTAND IN TE LADEN
 require("dotenv").config();
 
-// MONGO DB CONNECTIE
-const { MongoClient } = require("mongodb");
-const mongoose = require("mongoose");
-mongoose.connect("mongodb://127.0.0.1:27017/rhythm_roulette");
-
-// DB
-const uri = process.env.MONGODB_URI;
-
-const client = new MongoClient(uri, {
-	useNewUrlParser: true,
-	useUnifiedTopology: true,
-});
-
-client.connect((err) => {
-	if (err) {
-		console.error(err);
-		process.exit(1);
-	}
-
-	mongoose.connect(uri, {
-		useNewUrlParser: true,
-		useUnifiedTopology: true,
-
-		socketTimeoutMS: 50000,
-		connectTimeoutMS: 50000,
-	});
-});
-
-console.log(process.env.MONGODB_URI);
-
-async function main() {
-	const url = "mongodb://127.0.0.01:27017";
-
-	const client = new MongoClient(url);
-
-	try {
-		await client.connect();
-	} catch (e) {
-		console.error(e);
-	} finally {
-		await client.close();
-	}
-}
-
-main().catch(console.error);
-
-const db = mongoose.connection;
-db.on("error", console.error.bind(console, "connection error:"));
-db.once("open", () => {
-	console.log("db connected!");
-});
-
 /////////////////////////////////////
 ////// BASIC BENODIGDE CONSTS EN APPS
 /////////////////////////////////////
@@ -75,6 +23,21 @@ app.set("views", path.join(__dirname, "view"));
 app.set("view engine", "ejs");
 app.use(express.static("static"));
 app.use(express.urlencoded({ extended: true }));
+
+const uri = process.env.MONGODB_URI;
+// MONGO DB CONNECTIE// const { MongoClient } = require("mongodb");
+const mongoose = require("mongoose");
+async function main() {
+	try {
+		await mongoose.connect(uri, {
+			dbName: "rhythm_roulette",
+		});
+		console.log("connected");
+	} catch (err) {
+		console.log(err);
+	}
+}
+main().catch((err) => console.log(err));
 
 // const fs = require("fs");
 // const jsonData = fs.readFileSync("static/data/songs.json", "utf8");
@@ -117,9 +80,9 @@ function onTaal(req, res) {
 // FORMULIER VERSTUREN EN REDIRECTEN NAAR VOLGENDE PAGINA
 //////////////////////////////////////////////////////////
 
-let feature;
-let moods;
-let language;
+let selectedFeatures;
+let selectedMoods;
+let selectedLanguage;
 
 app.post("/userPost", handleUserPost);
 
@@ -128,16 +91,16 @@ function handleUserPost(req, res) {
 	const nextPage = formData["nextPage"];
 	res.redirect(nextPage);
 
-	if (feature === undefined) {
-		feature = req.body.feature;
+	if (selectedFeatures === undefined) {
+		selectedFeatures = req.body.feature;
 	}
 
-	if (moods === undefined) {
-		moods = req.body.moods;
+	if (selectedMoods === undefined) {
+		selectedMoods = req.body.moods;
 	}
 
-	if (language === undefined) {
-		language = req.body.language;
+	if (selectedLanguage === undefined) {
+		selectedLanguage = req.body.language;
 	}
 }
 
@@ -146,16 +109,19 @@ function handleUserPost(req, res) {
 ////////////////////////
 
 // define a schema for your song data
+//define a schema for your songdata
 const songSchema = new mongoose.Schema({
 	title: String,
 	artist: String,
-	moods: [String],
+	moods: Array,
 	language: String,
-	feature: [String],
+	feature: Array,
+	audiofile: String,
+	cover: String,
 });
+// model voor songdata
+const Song = mongoose.model("Song", songSchema);
 
-// model voor song data
-const Song = mongoose.model("songs", songSchema);
 // parse info die je krijgt van de body
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -165,33 +131,43 @@ app.use(bodyParser.json());
 ////////////////////////////////////////////////////////////////////
 
 app.post("/resultaat", async (req, res) => {
-	// const song = await Song.find(); //{
-	// // feature: { $in: feature },
-	// // language: { $in: language },
-	// //moods: { $in: moods },}
-	// // ();
+	if (!Array.isArray(selectedFeatures)) {
+		selectedFeatures = selectedFeatures.split(",");
+	}
+
+	if (!Array.isArray(selectedMoods)) {
+		selectedMoods = selectedFeatures.split(",");
+	}
+
+	const songs = await Song.find({
+		moods: { $in: selectedMoods },
+		features: { $in: selectedFeatures },
+	}).exec();
+
+	// console.log("selectedMoods:", selectedMoods);
+	// console.log("selectedFeatures:", selectedFeatures);
+
+	// const songs = await Song.find({
+	// 	moods: { $in: ["optimistisch", "energiek"] },
+	// 	feature: { $in: ["vibe", "beat"] },
+	// }).exec();
+
+	console.log("Matching songs:", songs);
+	console.log("Matching Features:", selectedFeatures);
+	console.log("Matching Moods:", selectedMoods);
 
 	// console.log(song);
 
 	res.render("resultaat", {
 		title: Song.title,
 		artist: Song.artist,
-		feature: feature,
-		moods: moods,
-		language: language,
 	});
 
 	console.log("@@-- req.body", req.body);
-	console.log("@@-- feature", feature);
-	console.log("@@-- moods", moods);
-	console.log("@@-- language", language);
+	console.log("@@-- feature", selectedFeatures);
+	console.log("@@-- moods", selectedMoods);
+	console.log("@@-- language", selectedLanguage);
 });
-
-// app.get("/database", async function testen(req, res) {
-// 	const list = await Song.find({});
-// 	console.log(list);
-// 	res.end();
-// });
 
 ////////////////////////////////////////
 ////////////////// 404 + LOCALHOST PORT
