@@ -59,11 +59,11 @@ indicator.style.left = `${indicatorPosition}em`;
 
 // optimistisch
 const optimistisch = document.getElementById("optimistisch"); // checkbox
-const optimistischImage = document.getElementById("optimistischImage");
+const optimistischImage = document.getElementById("optimistischImage"); // image
 
-if (optimistisch) {
+if (optimistisch && optimistischImage) {
 	optimistisch.addEventListener("change", function () {
-		if (optimistisch.checked) {
+		if (this.checked) {
 			optimistischImage.src = "./img/voel-optimistisch-select.png";
 		} else {
 			optimistischImage.src = "./img/voel-optimistisch.png";
