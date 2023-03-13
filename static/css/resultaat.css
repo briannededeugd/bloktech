@@ -131,10 +131,16 @@ body>section>section:first-of-type h1 {
 body>section>section:nth-of-type(2) {
     margin: 1em 0 6em;
     position: absolute;
-    bottom: 0;
+    bottom: 2em;
     width: 100%;
     left: 0;
     text-align: center;
+}
+
+body>section>section:nth-of-type(2) img {
+    width: 20em;
+    height: 20em;
+    margin-bottom: 2em;
 }
 
 /* body > section > section:nth-of-type(3) p {
@@ -163,8 +169,8 @@ body>section>section:nth-of-type(2) p:nth-of-type(2) {
 /******************/
 /* Voortgang area */
 /******************/
-body>section>section:nth-of-type(3) {
-    /* progress / voortgang area */
+/* body>section>section:nth-of-type(3) {
+    /* progress / voortgang area
     height: 6px;
     width: 95%;
 
@@ -174,17 +180,44 @@ body>section>section:nth-of-type(3) {
     position: absolute;
     bottom: 0;
     background-color: grey;
-}
+} */
 
 body>section>section:nth-of-type(3)>section:first-of-type {
-    /* bar */
-    height: inherit;
-    width: 0%;
-    position: relative;
+    display: block;
+    height: 4em;
+    width: 85vw;
+    position: absolute;
     border-radius: inherit;
-    /* background: ; */
+    bottom: 3.5em;
 }
 
+audio {
+    width: 80vw;
+}
+
+body>section>section:nth-of-type(3)>section:nth-of-type(2) {
+    width: 85vw;
+    position: absolute;
+    bottom: 5em;
+}
+
+.progress-bar {
+    width: 60vw;
+    height: 5px;
+    background-color: #525b78;
+    transition: width 0.1s ease-in-out;
+}
+
+.tijd-indicator {
+    border-radius: 2em;
+    width: 1em;
+    height: 1em;
+    background-color: #8ebaff;
+    position: absolute;
+    left: 3em;
+}
+
+/*
 body>section>section:nth-of-type(3)>section:first-of-type::before {
     content: "";
     position: absolute;
@@ -214,8 +247,8 @@ body>section>section:nth-of-type(3)>section:nth-of-type(2) {
 
 body>section>section:nth-of-type(3)>section:nth-of-type(2) span {
     font-size: 13px;
-    /* color: ; */
-}
+    /* color: ; 
+} */
 
 
 

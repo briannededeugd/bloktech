@@ -27,6 +27,7 @@ app.use(express.urlencoded({ extended: true }));
 const uri = process.env.MONGODB_URI;
 // MONGO DB CONNECTIE// const { MongoClient } = require("mongodb");
 const mongoose = require("mongoose");
+const { ObjectId } = require("mongodb");
 async function main() {
 	try {
 		await mongoose.connect(uri, {
@@ -76,6 +77,13 @@ function onTaal(req, res) {
 	res.render("taal");
 }
 
+// Formulier om eigen lied toe te voegen
+app.get("/newsong", onNewSong);
+
+function onNewSong(req, res) {
+	res.render("newsong");
+}
+
 //////////////////////////////////////////////////////////
 // FORMULIER VERSTUREN EN REDIRECTEN NAAR VOLGENDE PAGINA
 //////////////////////////////////////////////////////////
@@ -111,13 +119,14 @@ function handleUserPost(req, res) {
 // define a schema for your song data
 //define a schema for your songdata
 const songSchema = new mongoose.Schema({
+	_id: ObjectId,
 	title: String,
 	artist: String,
 	moods: Array,
 	language: Array,
 	feature: Array,
-	audiofile: String,
 	cover: String,
+	audiofile: String,
 });
 // model voor songdata
 const Song = mongoose.model("Song", songSchema);
@@ -235,6 +244,8 @@ app.post("/resultaat", async (req, res) => {
 	res.render("resultaat", {
 		title: bestMatch.title,
 		artist: bestMatch.artist,
+		cover: bestMatch.cover,
+		audiofile: bestMatch.audiofile,
 	});
 });
 

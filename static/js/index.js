@@ -1,5 +1,6 @@
 // Play knop wordt pauzeknop als erop wordt geklikt
 const playButton = document.getElementById("play-knop");
+const audio = document.getElementById("current-audio");
 
 if (playButton) {
 	// Er wordt eerst gekeken of er een playknop bestaat op de pagina, zodat er geen error komt
@@ -8,11 +9,47 @@ if (playButton) {
 
 		if (playButton.textContent === "play_arrow") {
 			playButton.textContent = "pause";
+			audio.play();
 		} else {
 			playButton.textContent = "play_arrow";
+			audio.pause();
 		}
 	});
 }
+
+function displayTime() {
+	var currentTime = audio.currentTime;
+	var minutes = Math.floor(currentTime / 60);
+	var seconds = Math.floor(currentTime % 60);
+	var timeDisplay = minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
+	const huidigeTijd = document.getElementById("huidige-tijd");
+	const maxTijd = document.getElementById("max-tijd");
+
+	huidigeTijd.textContent = timeDisplay;
+
+	var duration = audio.duration;
+	var minutesTotal = Math.floor(duration / 60);
+	var secondsTotal = Math.floor(duration % 60);
+	var timeDisplayTotal =
+		minutesTotal + ":" + (secondsTotal < 10 ? "0" : "") + secondsTotal;
+
+	maxTijd.textContent = timeDisplayTotal;
+
+	console.log(audio.currentTime);
+}
+
+if (audio) {
+	audio.addEventListener("timeupdate", displayTime);
+}
+
+const progressBar = document.querySelector(".progressbar");
+const progressWidth = progressBar.offsetWidth;
+const progress = (audio.currentTime / audio.duration) * 100;
+
+// Update indicator position
+const indicator = document.querySelector(".tijd-indicator");
+const indicatorPosition = (progressWidth * progress) / 100;
+indicator.style.left = `${indicatorPosition}em`;
 
 /////////////////////////////
 // ICONEN VERANDEREN OP KLIK
@@ -219,7 +256,7 @@ if (melodie && melodieImage) {
 }
 
 // stem artiest
-const stemartiest = document.getElementById("vocals"); // checkbox
+const stemartiest = document.getElementById("stemartiest"); // checkbox
 const stemartiestImage = document.getElementById("stemartiestImage");
 
 if (stemartiest && stemartiestImage) {

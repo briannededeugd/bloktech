@@ -33,6 +33,7 @@
 
 			<!-- Lied details -->
 			<section>
+				<img src="<%= cover %>" alt="Album cover" />
 				<p><%= title %></p>
 				<p><%= artist %></p>
 				<!-- Wrappen in <%= %> -->
@@ -41,12 +42,14 @@
 			<!-- Voortgang area -->
 			<section>
 				<section>
-					<audio id="current-audio" src=""></audio>
+					<audio id="current-audio" src="<%= audiofile %>"></audio>
 				</section>
 
 				<!-- song timer -->
 				<section>
 					<span id="huidige-tijd">0:00</span>
+					<section class="progress-bar"></section>
+					<section class="tijd-indicator"></section>
 					<span id="max-tijd">0:00</span>
 				</section>
 			</section>
