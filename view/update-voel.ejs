@@ -6,11 +6,11 @@
 
 	<body>
 		<section>
-			<h1><em>Hoe voel jij je</em> op dit moment?</h1>
+			<h1><em>Hoe voel je je</em> bij dit lied?</h1>
 			<p>Selecteer minimaal één optie.</p>
 		</section>
 
-		<form action="/userPost" method="post" id="form-v">
+		<form action="/updatedUserPost" method="post" id="form-v">
 			<input
 				type="checkbox"
 				name="moods"
@@ -104,7 +104,7 @@
 			</label>
 
 			<!-- Submit-knop is ook knop naar volgende pagina -->
-			<input type="hidden" name="nextPage" value="/muziekelement" />
+			<input type="hidden" name="nextPage" value="/update-element" />
 
 			<fieldset>
 				<a href="/">
@@ -123,6 +123,6 @@
 			</fieldset>
 		</form>
 
-		<script src="/js/index.js" type="module"></script>
+		<script src="/js/index.js"></script>
 	</body>
 </html>

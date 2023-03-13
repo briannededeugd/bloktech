@@ -77,13 +77,6 @@ function onTaal(req, res) {
 	res.render("taal");
 }
 
-// Formulier om eigen lied toe te voegen
-app.get("/newsong", onNewSong);
-
-function onNewSong(req, res) {
-	res.render("newsong");
-}
-
 //////////////////////////////////////////////////////////
 // FORMULIER VERSTUREN EN REDIRECTEN NAAR VOLGENDE PAGINA
 //////////////////////////////////////////////////////////
@@ -127,6 +120,7 @@ const songSchema = new mongoose.Schema({
 	feature: Array,
 	cover: String,
 	audiofile: String,
+	spotifylink: String,
 });
 // model voor songdata
 const Song = mongoose.model("Song", songSchema);
@@ -246,8 +240,82 @@ app.post("/resultaat", async (req, res) => {
 		artist: bestMatch.artist,
 		cover: bestMatch.cover,
 		audiofile: bestMatch.audiofile,
+		spotifylink: bestMatch.spotifylink,
 	});
 });
+
+////////////////////////////////////////
+// UPDATE LIED-INFORMATIE
+////////////////////////////////////////
+
+/////// POST UPDATED DATA
+
+app.post("/updatedUserPost", handleUserUpdate);
+
+function handleUserUpdate(req, res, bestMatch) {
+	// get the id of the song to update from the URL parameter
+	const id = bestMatch.id;
+	console.log(bestMatch._id);
+
+	const formData = req.body;
+	const nextPage = formData["nextPage"];
+	res.redirect(nextPage);
+
+	// update the song in the database
+	Song.findByIdAndUpdate(id, {
+		$set: {
+			moods: req.body.moods,
+			feature: req.body.feature,
+		},
+	})
+		.then(() => {
+			res.redirect("nextPage");
+		})
+		.catch((err) => {
+			console.error(err);
+			// handle error
+		});
+}
+
+app.post("/confirmationscreen", async (req, res, bestMatch) => {
+	const id = bestMatch.id;
+	Song.findByIdAndUpdate(id, {
+		$set: {
+			language: req.body.language,
+		},
+	});
+
+	// if (updatedFormData === undefined) {
+	// 	updatedFormData = req.body;
+	// }
+
+	res.render("confirmationscreen", {
+		title: bestMatch.title,
+	});
+});
+
+////////// ROUTES
+
+// Formulier om gevoelens te updaten
+app.get("/update-voel", onUpdateFeeling);
+
+function onUpdateFeeling(req, res) {
+	res.render("update-voel");
+}
+
+// Formulier om elementen te updaten
+app.get("/update-element", onUpdateElement);
+
+function onUpdateElement(req, res) {
+	res.render("update-element");
+}
+
+// Formulier om elementen te updaten
+app.get("/update-taal", onUpdateLanguage);
+
+function onUpdateLanguage(req, res) {
+	res.render("update-taal");
+}
 
 ////////////////////////////////////////
 ////////////////// 404 + LOCALHOST PORT

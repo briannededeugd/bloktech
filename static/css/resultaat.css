@@ -217,43 +217,6 @@ body>section>section:nth-of-type(3)>section:nth-of-type(2) {
     left: 3em;
 }
 
-/*
-body>section>section:nth-of-type(3)>section:first-of-type::before {
-    content: "";
-    position: absolute;
-    height: 12px;
-    width: 12px;
-    border-radius: 50%;
-    top: 50%;
-    right: -5px;
-    z-index: 2;
-    opacity: 0;
-    pointer-events: none;
-    transform: translateY(-50%);
-    background: inherit;
-    transition: opacity .2s ease;
-}
-
-body>section>section:nth-of-type(3):hover>section:first-of-type::before {
-    opacity: 1;
-    pointer-events: auto;
-}
-
-body>section>section:nth-of-type(3)>section:nth-of-type(2) {
-    margin-top: 2em;
-    justify-content: space-between;
-    width: 100%;
-}
-
-body>section>section:nth-of-type(3)>section:nth-of-type(2) span {
-    font-size: 13px;
-    /* color: ; 
-} */
-
-
-
-
-
 /************/
 /* CONTROLS */
 /************/
@@ -301,10 +264,28 @@ body>section>section:nth-of-type(4)>section i {
     position: absolute;
 }
 
+#wijzig-lied {
+    width: 5.25vw;
+    position: relative;
+    height: 3.25vh;
+    bottom: .2vh;
+}
+
 body>section>section:nth-of-type(4) i#play-knop {
     font-size: 43px !important;
     height: 43px;
     width: 43px
+}
+
+#spotify {
+    position: relative;
+    height: 4.25vh;
+    left: 0.6em;
+    top: 0.25em;
+}
+
+body>section>section:nth-of-type(4)>a {
+    background-color: transparent;
 }
 
 

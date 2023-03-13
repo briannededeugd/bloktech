@@ -6,10 +6,10 @@
 
 	<body>
 		<section>
-			<h1>Naar welk muziekelement <em>luister je het meest</em>?</h1>
+			<h1>Welke <em>elementen van dit lied</em> zijn het best?</h1>
 		</section>
 
-		<form action="/userPost" method="post" id="form-m">
+		<form action="/updatedUserPost" method="post">
 			<input type="checkbox" name="feature" value="beat" id="beat" />
 			<label for="beat">
 				<img src="img/element-beat.png" id="beatImage" />
@@ -62,7 +62,7 @@
 			</label>
 
 			<!-- Submit-knop is ook knop naar volgende pagina -->
-			<input type="hidden" name="nextPage" value="/taal" />
+			<input type="hidden" name="nextPage" value="/update-taal" />
 
 			<fieldset>
 				<a href="/voelen">

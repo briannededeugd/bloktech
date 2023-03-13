@@ -6,10 +6,10 @@
 
 	<body>
 		<section>
-			<h1><em>In welke taal</em> luister jij het liefst naar muziek?</h1>
+			<h1>In <em>welke talen</em> wordt dit lied gezongen?</h1>
 		</section>
 
-		<form action="/resultaat" method="post" id="form-t">
+		<form action="/confirmationScreen" method="post">
 			<input
 				type="checkbox"
 				name="language"
@@ -45,7 +45,7 @@
 			</label>
 
 			<!-- Submit-knop is ook knop naar volgende pagina -->
-			<input type="hidden" name="nextPage" value="/resultaat" />
+			<input type="hidden" name="nextPage" value="/confirmationscreen" />
 
 			<fieldset>
 				<a href="/muziekelement">
