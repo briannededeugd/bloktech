@@ -16,3 +16,6 @@ Om het project op te starten, run je de volgende code:
 npm run dev
 ```
 Vervolgens kan je de applicatie openen!
+
+## Resources
+(Zie mijn hele bronnenlijst in de wiki.)[hi.com]
