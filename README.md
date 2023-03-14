@@ -24,5 +24,11 @@ Om het project op te starten, run je de volgende code:
 Vervolgens kan je de applicatie openen door in je browser (het liefst Chrome) `localhost:8080` in te typen. En genieten maar :)  
 (Supertip: Rhythm Roulette is bedoeld als mobiele app, dus als je eenmaal in Chrome zit, word je aangeraden om `rechtermuisknop`, `inspecteren`, en `device: [any mobile phone]` te kiezen voor de beste experience!)
 
+## Templating View Engine + database
+Deze applicatie maakt gebruik van de 'EJS' templating view engine en werkt met Mongoose van MongoDb Atlas, een noSQL database die runt in de cloud.
+
+## License
+
+
 ## Resources
 [Zie mijn hele bronnenlijst in de wiki.](https://github.com/briannededeugd/matching-application/wiki/Resources)
