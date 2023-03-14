@@ -28,7 +28,7 @@ Vervolgens kan je de applicatie openen door in je browser (het liefst Chrome) `l
 Deze applicatie maakt gebruik van de 'EJS' templating view engine en werkt met Mongoose van MongoDb Atlas, een noSQL database die runt in de cloud.
 
 ## License
-
+[Bekijk license](https://github.com/briannededeugd/matching-application/blob/main/LICENSE.md)
 
 ## Resources
 [Zie mijn hele bronnenlijst in de wiki.](https://github.com/briannededeugd/matching-application/wiki/Resources)
