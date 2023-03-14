@@ -218,19 +218,20 @@ body>section>section:nth-of-type(3)>section:nth-of-type(2) {
 }
 
 .progress-bar {
+    position: relative;
     width: 60vw;
     height: 5px;
     background-color: #525b78;
-    transition: width 0.1s ease-in-out;
 }
 
 .tijd-indicator {
     border-radius: 2em;
     width: 1em;
     height: 1em;
+    top: -.31em;
     background-color: #8ebaff;
     position: absolute;
-    left: 3em;
+    left: 0;
 }
 
 /************/

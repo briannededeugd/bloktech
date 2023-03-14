@@ -17,40 +17,37 @@ if (playButton) {
 	});
 }
 
-function displayTime() {
-	var currentTime = audio.currentTime;
-	var minutes = Math.floor(currentTime / 60);
-	var seconds = Math.floor(currentTime % 60);
-	var timeDisplay = minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
-	const huidigeTijd = document.getElementById("huidige-tijd");
-	const maxTijd = document.getElementById("max-tijd");
-
-	huidigeTijd.textContent = timeDisplay;
-
-	var duration = audio.duration;
-	var minutesTotal = Math.floor(duration / 60);
-	var secondsTotal = Math.floor(duration % 60);
-	var timeDisplayTotal =
-		minutesTotal + ":" + (secondsTotal < 10 ? "0" : "") + secondsTotal;
-
-	maxTijd.textContent = timeDisplayTotal;
-
-	console.log(audio.currentTime);
-}
-
 if (audio) {
-	audio.addEventListener("timeupdate", displayTime);
+	audio.addEventListener("timeupdate", () => {
+		var currentTime = audio.currentTime;
+		var minutes = Math.floor(currentTime / 60);
+		var seconds = Math.floor(currentTime % 60);
+		var timeDisplay = minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
+		const huidigeTijd = document.getElementById("huidige-tijd");
+		const maxTijd = document.getElementById("max-tijd");
+
+		huidigeTijd.textContent = timeDisplay;
+
+		var duration = audio.duration;
+		var minutesTotal = Math.floor(duration / 60);
+		var secondsTotal = Math.floor(duration % 60);
+		var timeDisplayTotal =
+			minutesTotal + ":" + (secondsTotal < 10 ? "0" : "") + secondsTotal;
+
+		maxTijd.textContent = timeDisplayTotal;
+
+		const progressBar = document.querySelector(".progress-bar");
+		if (progressBar) {
+			const progressWidth = progressBar.offsetWidth;
+			const progress = (currentTime / duration) * 100;
+
+			// Update indicator positie
+			const indicator = document.querySelector(".tijd-indicator");
+			const indicatorPosition = (progressWidth * progress) / 100;
+			indicator.style.left = `${indicatorPosition}px`;
+		}
+	});
 }
-
-const progressBar = document.querySelector(".progressbar");
-const progressWidth = progressBar.offsetWidth;
-const progress = (audio.currentTime / audio.duration) * 100;
-
-// Update indicator position
-const indicator = document.querySelector(".tijd-indicator");
-const indicatorPosition = (progressWidth * progress) / 100;
-indicator.style.left = `${indicatorPosition}em`;
-
 /////////////////////////////
 // ICONEN VERANDEREN OP KLIK
 /////////////////////////////

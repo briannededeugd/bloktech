@@ -40,20 +40,14 @@ async function main() {
 }
 main().catch((err) => console.log(err));
 
-// const fs = require("fs");
-// const jsonData = fs.readFileSync("static/data/songs.json", "utf8");
-// let myData = JSON.parse(jsonData);
-
 ////////////////////////////////////////////
 ////////////// PAGINA'S INLADEN OP LOCALHOST
 ////////////////////////////////////////////
 
-// req staat voor 'request', dus wat de HTTP request is, en res staat voor 'response' wat een express app terugstuurt
 app.get("/", onHome);
 
 function onHome(req, res) {
-	// res.send('Hallo');
-	res.sendFile(path.join(__dirname, "view/index.html"));
+	res.sendFile(path.join(__dirname, "/index.html"));
 }
 
 // Formulierpagina om gevoelens te kiezen
@@ -183,7 +177,7 @@ app.post("/resultaat", async (req, res) => {
 		selectedFeatures,
 		songsFromFilter
 	) {
-		// Define a helper function to calculate the score for each song
+		// Een functie om de score van elk lied uit de filterfunctie uit te rekenen
 		const calculateScore = (song) => {
 			let score = 0;
 			if (
@@ -208,7 +202,7 @@ app.post("/resultaat", async (req, res) => {
 			return score;
 		};
 
-		// Calculate the score for each song and store it in a new array
+		// Bereken de score van elk lied en maak van het lied + de score van het lied een nieuwe array
 		const scores = songsFromFilter.map((song) => {
 			return {
 				song: song,
@@ -216,10 +210,10 @@ app.post("/resultaat", async (req, res) => {
 			};
 		});
 
-		// Sort the songs by their score, with the highest-scoring song first
+		// Sorteer de liedjes per score
 		scores.sort((a, b) => b.score - a.score);
 
-		// Return the highest-scoring song (or null if no songs were found)
+		// Return het hoogst scorende lied OF null als geen liedjes zijn gevonden
 		return scores.length > 0 ? scores[0].song : null;
 	};
 
@@ -253,7 +247,7 @@ app.post("/resultaat", async (req, res) => {
 app.post("/updatedUserPost", handleUserUpdate);
 
 function handleUserUpdate(req, res, bestMatch) {
-	// get the id of the song to update from the URL parameter
+	// verkrijg het ID van het lied dat de gebruiker dan aan kan passen
 	const id = bestMatch.id;
 	console.log(bestMatch._id);
 
@@ -261,7 +255,7 @@ function handleUserUpdate(req, res, bestMatch) {
 	const nextPage = formData["nextPage"];
 	res.redirect(nextPage);
 
-	// update the song in the database
+	// update het lied in de database
 	Song.findByIdAndUpdate(id, {
 		$set: {
 			moods: req.body.moods,
@@ -284,10 +278,6 @@ app.post("/confirmationscreen", async (req, res, bestMatch) => {
 			language: req.body.language,
 		},
 	});
-
-	// if (updatedFormData === undefined) {
-	// 	updatedFormData = req.body;
-	// }
 
 	res.render("confirmationscreen", {
 		title: bestMatch.title,
