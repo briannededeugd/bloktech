@@ -18,4 +18,4 @@ npm run dev
 Vervolgens kan je de applicatie openen!
 
 ## Resources
-(Zie mijn hele bronnenlijst in de wiki.)[hi.com]
+[Zie mijn hele bronnenlijst in de wiki.](https://github.com/briannededeugd/matching-application/wiki/Resources)
