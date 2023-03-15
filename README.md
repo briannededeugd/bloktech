@@ -6,6 +6,15 @@ Welkom bij Rhythm Roulette! Een app die jouw binnen enkele seconden matcht met e
 
 Blijkt het dat het lied dat jij krijgt toch totaal niet bij jouw opgegeven bui, lievelingselement of taal hoort? Dan kan jij Rhythm Roulette een stukje op weg helpen door linksonderin het scherm het lied helemaal opnieuw te categoriseren, zodat het makkelijker te vinden is voor mensen die er wel aan toe zijn. En daarna kan je natuurlijk gewoon weer opnieuw het supersnelle proces doorlopen. Rhythm Roulette heeft wel vijftien liedjes voor jou om te ontdekken. Dat kan je niet missen!
 
+## Een kijkje in de applicatie
+<img width="165" alt="Screenshot 2023-03-15 at 11 04 22" src="https://user-images.githubusercontent.com/92082302/225276125-fe402817-007d-4f00-a3d2-1a3495e67312.png"> <img width="165" alt="Screenshot 2023-03-15 at 11 04 58" src="https://user-images.githubusercontent.com/92082302/225276278-9308e9cd-3503-4b7d-8a09-2195ae128e08.png">
+<img width="165" alt="Screenshot 2023-03-15 at 11 05 19" src="https://user-images.githubusercontent.com/92082302/225276364-99e28820-fe32-46a2-9a7b-f4fd9687f7da.png">
+<img width="165" alt="Screenshot 2023-03-15 at 11 05 35" src="https://user-images.githubusercontent.com/92082302/225276425-8787eca8-6217-407c-aa81-103ffe5b5169.png">
+<img width="165" alt="Screenshot 2023-03-15 at 11 13 56" src="https://user-images.githubusercontent.com/92082302/225278602-807ade0c-1720-42c3-9d97-51150d631d63.png">
+<img width="165" alt="Screenshot 2023-03-15 at 11 15 05" src="https://user-images.githubusercontent.com/92082302/225278861-e0d8879c-c353-4055-b88a-fa7d87ea1f96.png">
+
+
+
 ## Hoe installeer ik deze applicatie?
 Open je terminal en voer het volgende in:
 
